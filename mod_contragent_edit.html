@@ -1,0 +1,77 @@
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/${adminalias}/">Панель</a>
+            </li>
+            <li class="breadcrumb-item"><a href="/${adminalias}/${alias}/">Контрагенты</a></li>
+            <li class="breadcrumb-item active">Контрагент №${contragent.id}</li>
+          </ol>
+          <div class="alert alert-${alerttype}" role="alert">
+            ${alert}
+          </div>
+          <!-- Page Content -->
+          <h1>Контрагент #${contragent.id}</h1>
+          <hr>
+          <p>ID: #${contragent.id}</p>
+          <hr>
+          <form action="/${adminalias}/${alias}/edit/${contragent.id}" method="post">
+            <div class="form-group row">
+              <label for="Name" class="col-sm-2 col-form-label">Наименование/имя</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Наименование/имя" value="${contragent.name}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Phone" class="col-sm-2 col-form-label">Телефон</label>
+              <div class="col-sm-10">
+                <input type="tel" class="form-control" id="Phone" name="Phone" aria-describedby="phoneHelp" placeholder="Номер телефона" value="${contragent.phone}">
+                <small id="phoneHelp" class="form-text text-muted">Номер телефона</small>
+              </div>
+            </div>                      
+            <div class="form-group row">
+              <label for="Email" class="col-sm-2 col-form-label">Email адрес</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Введите email" value="${contragent.email}">
+                <small id="emailHelp" class="form-text text-muted">Описание поля</small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="QQ" class="col-sm-2 col-form-label">QQ</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="QQ" name="QQ" placeholder="Введите QQ" value="${contragent.qq}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Wechat" class="col-sm-2 col-form-label">Wechat</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Wechat" name="Wechat" aria-describedby="wechatHelp" placeholder="Wechat" value="${contragent.wechat}">
+                <small id="wechatHelp" class="form-text text-muted">Wechat</small>
+              </div>
+            </div>             
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </form>
+          <hr>          
+          <button type="button" id="deletebtn" class="btn btn-danger">Удалить</button>
+          <script>
+            var btn = document.getElementById("deletebtn");
+            btn.addEventListener("click", sendRequest);
+            function sendRequest(event){
+            if(confirm('Удалить?'))
+            {
+              var request = new XMLHttpRequest();
+              function reqReadyStateChange() {
+                if (request.readyState == 4 && request.status == 200) {
+                  if (!alert("Запрос удален!")) {
+                    document.location.href="/${adminalias}/${alias}/";
+                  }
+                }
+            }
+            var body = "item=" + "${contragent.id}";
+            request.open("POST", "/${adminalias}/${alias}/delete");
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.onreadystatechange = reqReadyStateChange;
+            request.send(body);
+            }
+            }
+          </script>

@@ -13,6 +13,10 @@
               <i class="fas fa-table"></i>
               Контрагенты</div>
             <div class="card-body">
+              <div>
+                <a class="btn btn-info" href="/${adminalias}/${alias}/new/">Новый</a>         
+              </div>
+              <hr>
               <div class="table-responsive">
 ${+list
 [-entity=contragent-] 
@@ -20,38 +24,37 @@ ${+list
                 <table class="table table-bordered" id="${alias}Table" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>Тип</th>
                       <th>Имя</th>
                       <th>Тел.</th>
                       <th>Email</th>
                       <th>QQ</th>
                       <th>Wechat</th>
+                      <th>ID</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>ID</th>
                       <th>Тип</th>
                       <th>Имя</th>
                       <th>Тел.</th>
                       <th>Email</th>
                       <th>QQ</th>
                       <th>Wechat</th>
+                      <th>ID</th>
                     </tr>
                   </tfoot>
                   <tbody>                  
 -]
 [-row=       
                     <tr>
-                      <td><a href="/${adminalias}/${alias}/get/${id}">${id}</a></td>
                       <td>${typeid}</td>
-                      <td>${name}</td>
+                      <td><a href="/${adminalias}/${alias}/edit/${id}">${name}</a></td>
                       <td><a href="tel:+${phone}">${phone}</a></td>
                       <td><a href="mailto:${email}">${email}</a></td>
                       <td>${qq}</td>
                       <td>${wechat}</td>
-                      
+                      <td><a href="/${adminalias}/${alias}/edit/${id}">${id}</a></td>                      
                     </tr>
 -]
 [-footer=                    
