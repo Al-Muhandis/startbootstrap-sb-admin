@@ -1,0 +1,71 @@
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/${-adminalias-}/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a href="/${-adminalias-}/${-alias-}/table/">${-entities-}</a></li>
+            <li class="breadcrumb-item active">${-entity-} №${-item.id-}</li>
+          </ol>
+          <div class="alert alert-${-alerttype-}" role="alert">
+            ${-alert-}
+          </div>
+
+          <!-- Page Content -->
+          <h1>${-entity-} #${-item.id-}</h1>
+          <hr>
+          <p>ID: #${-item.id-}</p>
+          <hr>
+          <form action="/${-adminalias-}/${-alias-}/edit/${-item.id-}" method="post">
+             <div class="form-group row">
+               <label for="Name" class="col-sm-2 col-form-label">Name</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="Name" name="Name" value="${-item.name-}">
+               </div>
+             </div>
+             <div class="form-group row">
+              <label for="AwesomeIcon" class="col-sm-2 col-form-label">Awesome font class</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="AwesomeIcon" name="AwesomeIcon" value="${-item.awesomeicon-}">
+                <small id="ProductCodeHelp" class="form-text text-muted">Field for <a href="https://fontawesome.com/v5.9.0/icons?d=gallery">awesome</a> font class like <code>&lt;i class=&quot;fa fa-sampleicon&quot;&gt;&lt;/i&gt;</code></small>            
+              </div>
+              <label class="col-sm-2 col-form-label"><i class="${-item.awesomeicon-}"></i></label>
+            </div>             <div class="form-group row">
+            <label for="LinkTemplate" class="col-sm-2 col-form-label">Awesome font class</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="LinkTemplate" name="LinkTemplate" value="${-item.linktemplate-}">
+                <small id="LinkTemplateHelp" class="form-text text-muted">Field for link template in anchor tags like <code>&lt;a href=&quot;mailto:%s&quot;&gt;anchor text&lt;/a&gt;</code>. Use <code>%s</code> for the value key</small>            
+              </div>
+            </div>                                    
+            <div class="form-group row">
+              <label for="Comment" class="col-sm-2 col-form-label">Comment</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="Comment" name="Comment" wrap="soft">${-item.comment-}</textarea>
+              </div>
+            </div>                             
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </form>          
+          <hr>          
+          <button type="button" id="deletebtn" class="btn btn-danger">Delete</button>
+          <script>
+            var btn = document.getElementById("deletebtn");
+            btn.addEventListener("click", sendRequest);
+            function sendRequest(event){
+            if(confirm('Удалить?'))
+            {
+              var request = new XMLHttpRequest();
+              function reqReadyStateChange() {
+                if (request.readyState == 4 && request.status == 200) {
+                  if (!alert("Запрос удален!")) {
+                    document.location.href="/${-adminalias-}/${-alias-}/table/";
+                  }
+                }
+            }
+            var body = "item=" + "${-item.id-}";
+            request.open("POST", "/${-adminalias-}/${-alias-}/delete");
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.onreadystatechange = reqReadyStateChange;
+            request.send(body);
+            }
+            }
+          </script>

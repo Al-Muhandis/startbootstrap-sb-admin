@@ -6,36 +6,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="${description}">
+    <meta name="description" content="${-description-}">
     <meta name="author" content="">
 
-    <title>${title}</title>
-
-    <!-- Bootstrap core CSS-->
-    <link href="/templates/admin/${template}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>${-title-}</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/templates/admin/${template}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/templates/admin/${-template-}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link href="/templates/admin/${template}/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/templates/admin/${-template-}/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/templates/admin/${template}/css/sb-admin.css" rel="stylesheet">
+    <link href="/templates/admin/${-template-}/css/sb-admin.css" rel="stylesheet">
 
   </head>
 
-  <body id="page-top">
+  <body id="page-top" class="sidebar-toggled">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="/${adminalias}/">Accounting service</a>
+      <a class="navbar-brand mr-1" href="/${-adminalias-}/">Accounting service</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
       
-      <span class="mr-1 text-white text-info">${username}</span>
+      <span class="mr-1 text-white text-info">${-username-}</span>
 
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -93,39 +90,50 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
+      <ul class="sidebar navbar-nav toggled">
         <li class="nav-item active">
-          <a class="nav-link" href="/${adminalias}/">
+          <a class="nav-link" href="/${-adminalias-}/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Панель управления</span>
+            <span>Dashboard</span>
           </a>
-        </li>
+        </li>       
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="/${adminalias}/login">Login</a>
-            <a class="dropdown-item" href="/${adminalias}/register">Register</a>
-            <a class="dropdown-item" href="/${adminalias}/forgot-password">Forgot Password</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item" href="404.html">404 Page</a>
-            <a class="dropdown-item" href="blank.html">Blank Page</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mudir/contragent/">
             <i class="fas fa-fw fa-address-book"></i>
-            <span>Контрагенты</span></a>
+            <span>Contragents</span></a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="/${-adminalias-}/contragent/table/">Table</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/${-adminalias-}/contact/table/">Contacts</a>
+            <a class="dropdown-item" href="/${-adminalias-}/contacttype/table/">Contact types</a>
+          </div>            
+        </li>   
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-tshirt"></i>
+            <span>Products</span></a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="/${-adminalias-}/product/table/">Names</a>
+            <a class="dropdown-item" href="/${-adminalias-}/productcode/table/">Codes</a>            
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/${-adminalias-}/product/new/">New</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">Other tables:</h6>            
+            <a class="dropdown-item" href="/${-adminalias-}/clothingsize/table/">Clothing sizes</a>
+            <a class="dropdown-item" href="/${-adminalias-}/productcategory/table/">Categories</a>
+            <a class="dropdown-item" href="/${-adminalias-}/packaging/table/">Package types</a>
+          </div>            
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mudir/product/">
-            <i class="fas fa-fw fa-shopping-cart"></i>
-            <span>Продукты</span></a>
-        </li>                                   
+          <a class="nav-link" href="/${-adminalias-}/order/table/">
+            <i class="fas fa-fw fa-handshake"></i>
+            <span>Orders</span></a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="/${-adminalias-}/store/table/">
+            <i class="fas fa-fw fa-warehouse"></i>
+            <span>Stores</span></a>
+        </li>                                                   
       </ul>
 
       <div id="content-wrapper">
@@ -141,7 +149,7 @@ ${+mod+}
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright ©RG's accounting service, 2019</span>
+              <span>Copyright app.IntegraWay's accounting service, 2019</span>
             </div>
           </div>
         </footer>
@@ -170,30 +178,30 @@ ${+mod+}
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="/${adminalias}/login">Logout</a>
+            <a class="btn btn-primary" href="/${-adminalias-}/login">Logout</a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/templates/admin/${template}/vendor/jquery/jquery.min.js"></script>
-    <script src="/templates/admin/${template}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/templates/admin/${-template-}/vendor/jquery/jquery.min.js"></script>
+    <script src="/templates/admin/${-template-}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/templates/admin/${template}/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/templates/admin/${-template-}/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="/templates/admin/${template}/vendor/chart.js/Chart.min.js"></script>
-    <script src="/templates/admin/${template}/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="/templates/admin/${template}/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="/templates/admin/${-template-}/vendor/chart.js/Chart.min.js"></script>
+    <script src="/templates/admin/${-template-}/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/templates/admin/${-template-}/vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/templates/admin/${template}/js/sb-admin.min.js"></script>
+    <script src="/templates/admin/${-template-}/js/sb-admin.min.js"></script>
 
     <!-- Demo scripts for this page-->
-    <script src="/templates/admin/${template}/js/rs-datatables-${alias}.js"></script>
-    <script src="/templates/admin/${template}/js/demo/chart-area-demo.js"></script>
+    <script src="/templates/admin/${-template-}/js/rs-datatables-${-alias-}.js"></script>
+    <script src="/templates/admin/${-template-}/js/demo/chart-area-demo.js"></script>
 
   </body>
 

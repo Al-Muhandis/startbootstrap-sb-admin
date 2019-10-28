@@ -1,0 +1,74 @@
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/${-adminalias-}/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a href="/${-adminalias-}/${-alias-}/table/">${-entities-}</a></li>
+            <li class="breadcrumb-item active">${-entity-} №${-item.id-}</li>
+          </ol>
+          <div class="alert alert-${-alerttype-}" role="alert">
+            ${-alert-}
+          </div>
+
+          <!-- Page Content -->
+          <h1>${-entity-} #${-item.id-}</h1>
+          <hr>
+          <p>ID: #${-item.id-}</p>
+          <hr>
+          <form action="/${-adminalias-}/${-alias-}/edit/${-item.id-}" method="post">
+            <input type="number" hidden id="Contragent" name="Contragent" value="${-item.contragent-}">
+            <div class="form-group row">
+              <label for="Name" class="col-sm-2 col-form-label">Name/number</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="Name" name="Name" value="${-item.name-}">
+              </div>
+              <div class="col-sm-2">
+${+list
+[-entity=contacttype-] 
+[-header=
+                <select name="ContactType" id="ContactType" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.contacttype-}-]
+[-sel_attr= selected-]
++}
+              </div>
+            </div>             
+            <div class="form-group row">
+              <label for="Comment" class="col-sm-2 col-form-label">Comment</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="Comment" name="Comment" wrap="soft">${-item.comment-}</textarea>
+              </div>
+            </div>                              
+            <button type="submit" class="btn btn-primary">Apply</button> <a href="/${-adminalias-}/contragent/edit/${-item.contragent-}" class="btn btn-primary">Back to the contragent</a>
+          </form>          
+          <hr>          
+          <button type="button" id="deletebtn" class="btn btn-danger">Delete</button>
+          <script>
+            var btn = document.getElementById("deletebtn");
+            btn.addEventListener("click", sendRequest);
+            function sendRequest(event){
+            if(confirm('Удалить?'))
+            {
+              var request = new XMLHttpRequest();
+              function reqReadyStateChange() {
+                if (request.readyState == 4 && request.status == 200) {
+                  if (!alert("Запрос удален!")) {
+                    document.location.href="/${-adminalias-}/${-alias-}/table/";
+                  }
+                }
+            }
+            var body = "item=" + "${-item.id-}";
+            request.open("POST", "/${-adminalias-}/${-alias-}/delete");
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.onreadystatechange = reqReadyStateChange;
+            request.send(body);
+            }
+            }
+          </script>

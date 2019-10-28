@@ -1,0 +1,56 @@
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/${-adminalias-}/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">${-entities-}</li>
+          </ol>
+
+          <!-- Clicks Table -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              ${-entities-}</div>
+            <div class="card-body">
+              <div>
+                <a class="btn btn-info" href="/${-adminalias-}/${-alias-}/new/">New (${-entity-})</a>         
+              </div>
+              <hr>
+              <div class="table-responsive">
+${+list
+[-entity=${-alias-}-] 
+[-header=
+                <table class="table table-bordered" id="${-alias-}Table" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Contacts</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Contacts</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>                  
+-]
+[-row=       
+                    <tr>
+                      <td><a href="/${-adminalias-}/${-alias-}/edit/${-id-}">${-name-}</a></td>
+                      <td>${-contragenttypename-}</td>
+                      <td>${-allcontacts-}</td>                     
+                    </tr>
+-]
+[-footer=                    
+                  </tbody>
+                </table>
+-]
++}
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>

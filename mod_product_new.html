@@ -2,48 +2,76 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="/${adminalias}/">Панель</a>
+              <a href="/${-adminalias-}/">Dashboard</a>
             </li>
-            <li class="breadcrumb-item"><a href="/${adminalias}/${alias}/">Продукты</a></li>
-            <li class="breadcrumb-item active">Новый</li>
+            <li class="breadcrumb-item"><a href="/${-adminalias-}/${-alias-}/table/">${-entities-}</a></li>
+            <li class="breadcrumb-item active">New (${-entity-})</li>
           </ol>
-          <div class="alert alert-${alerttype}" role="alert">
-            ${alert}
+          <div class="alert alert-${-alerttype-}" role="alert">
+            ${-alert-}
           </div>
           <!-- Page Content -->
-          <h1>Новый продукт</h1>
+          <h1>New (${-entity-})</h1>
           <hr>
-          <form action="/${adminalias}/${alias}/new/" method="post">
+          <form action="/${-adminalias-}/${-alias-}/new/" method="post">
             <div class="form-group row">
-              <label for="Name" class="col-sm-2 col-form-label">Наименование</label>
+              <label for="Name" class="col-sm-2 col-form-label">Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="Name" name="Name" placeholder="Наименование/имя" value="${product.name}">
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Product name" value="${-item.name-}">
               </div>
             </div>
             <div class="form-group row">
-              <label for="Article" class="col-sm-2 col-form-label">Артикул</label>
+              <label for="ProductCategory" class="col-sm-2 col-form-label">Category</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="Article" name="Article" placeholder="Артикул товара" value="${product.article}">
+${+list
+[-entity=productcategory-] 
+[-header=
+                <select name="ProductCategory" id="ProductCategory" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.productcategory-}-]
+[-sel_attr= selected-]
++}
               </div>
-            </div>                      
+            </div> 
             <div class="form-group row">
-              <label for="Length" class="col-sm-2 col-form-label">Длина</label>
+              <label for="manufacturer" class="col-sm-2 col-form-label">Manufacturer</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="Length" name="Length" placeholder="Длина товара" value="${product.length}">
+${+list
+[-entity=contragent-] 
+[-header=
+                <select name="manufacturer" id="manufacturer" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.manufacturer-}-]
+[-sel_attr= selected-]
+[-filter= contragenttype=4-]
++}
               </div>
-            </div>  
+            </div>                  
             <div class="form-group row">
-              <label for="Width" class="col-sm-2 col-form-label">Ширина</label>
+              <label for="Code" class="col-sm-2 col-form-label">Product barcode</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="Width" name="Width" placeholder="Ширина товара" value="${product.width}">
+                <input type="number" class="form-control" id="Code" name="Code" aria-describedby="CodeHelp" placeholder="XXX" value="${-item.code-}" min="0" max="999" maxlength="3">
+                <small id="CodeHelp" class="form-text text-muted">First 8-10<sup>-th</sup> digits from barcode of the product barcode</small>
               </div>
-            </div>      
+            </div>                                    
             <div class="form-group row">
-              <label for="Weight" class="col-sm-2 col-form-label">Вес</label>
+              <label for="Article" class="col-sm-2 col-form-label">Article</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="Weight" name="Weight" placeholder="Вес товара" value="${product.weight}">
+                <input type="text" class="form-control" id="Article" name="Article" placeholder="Product article" value="${-item.article-}">
               </div>
-            </div>                                  
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div> 
+            <button type="submit" class="btn btn-primary">Apply</button>
           </form>
           <hr>          

@@ -1,0 +1,121 @@
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/${-adminalias-}/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a href="/${-adminalias-}/${-alias-}/table/">${-entities-}</a></li>
+            <li class="breadcrumb-item active">${-entity-} №${-item.id-}</li>
+          </ol>
+          <div class="alert alert-${-alerttype-}" role="alert">
+            ${-alert-}
+          </div>
+          <!-- Page Content -->
+          <h1>${-entity-} #${-item.id-}</h1>
+          <hr>
+          <p>ID: #${-item.id-}</p>
+          <hr>
+          <form action="/${-adminalias-}/${-alias-}/edit/${-item.id-}" method="post">
+            <div class="form-group row">
+              <label for="Product" class="col-sm-2 col-form-label"><i class="fas fa-fw fa-tshirt"></i> Name</label>
+              <div class="col-sm-8">
+${+list
+[-entity=product-] 
+[-header=
+                <select name="Product" id="Product" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.product-}-]
+[-sel_attr= selected-]
++}  
+              </div>
+              <a href="/${-adminalias-}/product/edit/${-item.product-}" class="btn btn-light col-sm-1"><i class="fas fa-fw fa-edit"></i></a>
+            </div>     
+            <div class="form-group row">
+              <label for="ClothingSize" class="col-sm-2 col-form-label">Clothing size</label>
+              <div class="col-sm-10">
+${+list
+[-entity=clothingsize-] 
+[-header=
+                <select name="ClothingSize" id="ClothingSize" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.clothingsize-}-]
+[-sel_attr= selected-]
++}
+              </div>
+            </div>     
+            <div class="form-group row">
+              <label for="Packaging" class="col-sm-2 col-form-label">Package</label>
+              <div class="col-sm-10">
+${+list
+[-entity=packaging-] 
+[-header=
+                <select name="Packaging" id="Packaging" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.packaging-}-]
+[-sel_attr= selected-]
++}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Article" class="col-sm-2 col-form-label">Barcode</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="code" name="code" placeholder="Barcode" value="${-item.code-}" min="00" max="99" maxlength="2">
+                <small id="BarcodeHelp" class="form-text text-muted">Specify 2 digits (11 and 12<sup>-th</sup> by order) from barcode</small>
+              </div>
+            </div>                      
+            <div class="form-group row">
+              <label for="Length" class="col-sm-2 col-form-label">Size</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="Length" name="Length" placeholder="Длина товара" value="${-item.size-}">
+              </div>
+            </div>   
+            <div class="form-group row">
+              <label for="Weight" class="col-sm-2 col-form-label">Weight</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Weight" name="Weight" placeholder="Вес товара" value="${-item.weight-}">
+              </div>
+            </div>            
+            <button type="submit" class="btn btn-primary">Apply</button> <a href="/${-adminalias-}/product/edit/${-item.product-}" class="btn btn-secondary">Back to the product name</a>
+          </form>
+          <hr>          
+          <button type="button" id="deletebtn" class="btn btn-danger">Delete</button>
+          <script>
+            var btn = document.getElementById("deletebtn");
+            btn.addEventListener("click", sendRequest);
+            function sendRequest(event){
+            if(confirm('Удалить?'))
+            {
+              var request = new XMLHttpRequest();
+              function reqReadyStateChange() {
+                if (request.readyState == 4 && request.status == 200) {
+                  if (!alert("Запрос удален!")) {
+                    document.location.href="/${-adminalias-}/${-alias-}/table/";
+                  }
+                }
+            }
+            var body = "item=" + "${-item.id-}";
+            request.open("POST", "/${-adminalias-}/${-alias-}/delete");
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.onreadystatechange = reqReadyStateChange;
+            request.send(body);
+            }
+            }
+          </script>

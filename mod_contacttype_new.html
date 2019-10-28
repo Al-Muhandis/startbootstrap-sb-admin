@@ -1,0 +1,38 @@
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/${-adminalias-}/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a href="/${-adminalias-}/${-alias-}/table/">${-entities-}</a></li>
+            <li class="breadcrumb-item active">New (${-entity-})</li>
+          </ol>
+          <div class="alert alert-${-alerttype-}" role="alert">
+            ${-alert-}
+          </div>
+          <!-- Page Content -->
+          <h1>New (${-entity-})</h1>
+          <hr>
+          <form action="/${-adminalias-}/${-alias-}/new/" method="post">
+             <div class="form-group row">
+              <label for="Name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="Name" name="Name" value="${-item.name-}">
+              </div>
+            </div>
+             <div class="form-group row">
+              <label for="AwesomeIcon" class="col-sm-2 col-form-label">Awesome font class</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="AwesomeIcon" name="AwesomeIcon" value="${-item.awesomeicon-}">
+                <small id="ProductCodeHelp" class="form-text text-muted">Field for <a href="https://fontawesome.com/v5.9.0/icons?d=gallery">awesome</a> font class like <code>&lt;i class=&quot;fa fa-sampleicon&quot;&gt;&lt;/i&gt;</code></small>            
+              </div>
+            </div>            
+            <div class="form-group row">
+              <label for="Comment" class="col-sm-2 col-form-label">Comment</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="Comment" name="Comment" wrap="soft">${-item.comment-}</textarea>
+              </div>
+            </div>   
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </form>
+          <hr>          
