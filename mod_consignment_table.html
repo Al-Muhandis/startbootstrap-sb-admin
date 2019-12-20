@@ -1,53 +1,51 @@
+
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a href="/${-adminalias-}/">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Producs</li>
+            <li class="breadcrumb-item active">${-entities-}</li>
           </ol>
 
-          <!-- Product Table -->
+          <!-- Clicks Table -->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Products</div>
+              ${-entities-}</div>
             <div class="card-body">
               <div>
-                <a class="btn btn-info" href="/${-adminalias-}/${-alias-}/new/">New</a>         
+                <a class="btn btn-info" href="/${-adminalias-}/${-alias-}/new/">New (${-entity-})</a>         
               </div>
               <hr>
               <div class="table-responsive">
 ${+list
 [-entity=${-alias-}-] 
 [-header=
-                <table class="table table-bordered" id="${-alias-}Table" width="100%" cellspacing="0">
+                <table class="table table-bconsignmented" id="${-alias-}Table" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th><i class="fas fa-edit"></i></th>
-                      <th>Name</th>
-                      <th>Manufacturer</th>
-                      <th>Category</th>                    
-                      <th>Article</th>                      
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th>Store</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th><i class="fas fa-edit"></i></th>
-                      <th>Name</th>
-                      <th>Manufacturer</th>
-                      <th>Category</th>                    
-                      <th>Article</th>   
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th>Store</th>
                     </tr>
                   </tfoot>
                   <tbody>                  
 -]
 [-row=       
                     <tr>
-                      <td><a href="/${-adminalias-}/${-alias-}/edit/${-id-}"><i class="fas fa-edit"></i></a> <code>#${-id-}</code></td> 
-                      <td>${-name-}</td> 
-                      <td>${-manufacturer_name-}</td>
-                      <td>${-productcategoryname-}</td>                    
-                      <td>${-article-}</td>              
+                      <td><a href="/${-adminalias-}/${-alias-}/edit/${-id-}"><i class="fas fa-edit"></i></a> #<code>${-id-}</code></td>
+                      <td>${-htmlconsignmentdate-}</td>
+                      <td>${-consignmenttype_name-}</td>
+                      <td><a href=""/${-adminalias-}/store/edit/${-store-}"></a>${-store_name-}</td>
                     </tr>
 -]
 [-footer=                    

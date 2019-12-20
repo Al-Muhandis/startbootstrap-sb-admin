@@ -25,25 +25,15 @@ ${+list
                   <thead>
                     <tr>
                       <th><i class="fas fa-edit"></i></th>
-                      <th>Дата заказа</th>
+                      <th>Order date</th>
                       <th>Customer</th>
-                      <th>Supplier</th>
-                      <th>Quantity</th>
-                      <th>Supplier amount</th>
-                      <th>Customer amount</th>
-                      <th>Order state</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th><i class="fas fa-edit"></i></th>
-                      <th>Дата заказа</th>
+                      <th>Order date</th>
                       <th>Customer</th>
-                      <th>Supplier</th>
-                      <th>Quantity</th>
-                      <th>Supplier amount</th>
-                      <th>Customer amount</th>
-                      <th>Order state</th>
                     </tr>
                   </tfoot>
                   <tbody>                  
@@ -53,11 +43,6 @@ ${+list
                       <td><a href="/${-adminalias-}/${-alias-}/edit/${-id-}"><i class="fas fa-edit"></i></a> #<code>${-id-}</code></td>
                       <td>${-htmlorderdate-}</td>
                       <td><a href="/${-adminalias-}/contragent/edit/${-customer-}">${-customername-}</a></td>
-                      <td><a href="/${-adminalias-}/contragent/edit/${-supplier-}">${-suppliername-}</a></td>
-                      <td>${-quantity-}</td>
-                      <td>${-supplieramount-}</td>
-                      <td>${-customeramount-}</td>  
-                      <td>${-orderstatename-}</td>     
                     </tr>
 -]
 [-footer=                    

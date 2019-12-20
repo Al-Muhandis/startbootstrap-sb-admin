@@ -17,18 +17,18 @@
           <hr>
           <form action="/${-adminalias-}/${-alias-}/edit/${-item.id-}" method="post">
             <div class="form-group row">
-              <label for="HTMLOrderDate" class="col-sm-2 col-form-label">Order date</label>
+              <label for="HTMLConsignmentDate" class="col-sm-2 col-form-label">Consignment date</label>
               <div class="col-sm-10">
-                <input type="date" class="form-control" id="HTMLOrderDate" name="HTMLOrderDate" placeholder="Order date" value="${-item.htmlorderdate-}">
+                <input type="date" class="form-control" id="HTMLConsignmentDate" name="HTMLConsignmentDate" placeholder="Consignment date" value="${-item.htmlconsignmentdate-}">
               </div>
-            </div>
+            </div> 
             <div class="form-group row">
-              <label for="Customer" class="col-sm-2 col-form-label">Customer</label>
+              <label for="ConsignmentType" class="col-sm-2 col-form-label">Type</label>
               <div class="col-sm-10">
 ${+list
-[-entity=contragent-]
+[-entity=consignmenttype-]
 [-header=
-                <select name="Customer" id="Customer" class="form-control">
+                <select name="ConsignmentType" id="ConsignmentType" class="form-control">
 -]
 [-row=
                 <option value="${-id-}"${-%selected%-}>${-name-}</option>
@@ -36,38 +36,51 @@ ${+list
 [-footer=
                 </select>
 -]
-[-sel_id=${-item.customer-}-]
+[-sel_id=${-item.consignmenttype-}-]
 [-sel_attr= selected-]
-[-filter= contragenttype=2-]
++}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Store" class="col-sm-2 col-form-label">Store</label>
+              <div class="col-sm-10">
+${+list
+[-entity=store-] 
+[-header=
+                <select name="Store" id="Store" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.store-}-]
+[-sel_attr= selected-]
 +}
               </div>
             </div>
             <div class="form-group row">
               <label for="Comment" class="col-sm-2 col-form-label">Comment</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="Comment" name="Comment" placeholder="Комментарий" wrap="soft">${-item.comment-}</textarea>
+                <textarea class="form-control" id="Comment" name="Comment" placeholder="Comment" wrap="soft">${-item.comment-}</textarea>
               </div>
-            </div>
+            </div>                                                                     
             <button type="submit" class="btn btn-primary">Apply</button>
           </form>
           <hr>
-          <a class="btn btn-secondary" href="/${-adminalias-}/orderproduct/new/?order=${-item.id-}">Add product to the order</a>
+          <a class="btn btn-secondary" href="/${-adminalias-}/consignmentproduct/new/?consignment=${-item.id-}">Add product to the consignment</a>
           <h2><i class="fas fa-barcode"></i> Product items</h2>
               <div class="table-responsive">
 ${+list
-[-entity=orderproduct-]
+[-entity=consignmentproduct-]
 [-header=
-                <table class="table table-bordered" id="${-orderproduct-}Table" width="100%" cellspacing="0">
+                <table class="table table-bconsignmented" id="${-consignmentproduct-}Table" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th><i class="fas fa-edit"></i></th>
                       <th>Product</th>
                       <th>Quantity</th>
-                      <th>State</th>
-                      <th>Supplier</th>
-                      <th>Supplier price</th>
-                      <th>Customer price</th>
-                      <th>Prelim. profit</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -75,32 +88,22 @@ ${+list
                       <th><i class="fas fa-edit"></i></th>
                       <th>Product</th>
                       <th>Quantity</th>
-                      <th>State</th>
-                      <th>Supplier</th>
-                      <th>Supplier price</th>
-                      <th>Customer price</th>
-                      <th>Prelim. profit</th>
                     </tr>
                   </tfoot>
                   <tbody>
 -]
 [-row=
                     <tr>
-                      <td><a href="/${-adminalias-}/orderproduct/edit/${-id-}"><i class="fas fa-edit"></i></a> <code>#${-id-}</code></td>
+                      <td><a href="/${-adminalias-}/consignmentproduct/edit/${-id-}"><i class="fas fa-edit"></i></a> <code>#${-id-}</code></td>
                       <td>${-productcode_barcode-} (${-productcode_product_name-})</td>
                       <td>${-quantity-}</td>
-                      <td>${-orderstatename-}</td>
-                      <td>${-suppliername-}</td>
-                      <td>${-supplierprice-}</td>
-                      <td>${-customerprice-}</td>
-                      <td>${-preprofit-}</td>
                     </tr>
 -]
 [-footer=
                   </tbody>
                 </table>
 -]
-[-filter=order=${-item.id-}-]
+[-filter=consignment=${-item.id-}-]
 +}
               </div>
               

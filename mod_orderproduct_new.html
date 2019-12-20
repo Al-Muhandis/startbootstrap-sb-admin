@@ -17,14 +17,14 @@
             <input hidden id="Order" name="Order" value="${-item.order-}">
             <div class="form-group row">
               <label for="OrderProduct" class="col-sm-2 col-form-label">Order item</label>
-              <div class="col-sm-10">
+              <div class="col-sm-8">
 ${+list
 [-entity=productcode-]
 [-header=
                 <select name="ProductCode" id="ProductCode" class="form-control">
 -]
 [-row=
-                <option value="${-id-}"${-%selected%-}>${-productname-} [${-barcode-}]</option>
+                <option value="${-id-}"${-%selected%-}>${-product_name-} (${-clothingsizename-}/${-packaging_name-}) [${-barcode-}]</option>
 -]
 [-footer=
                 </select>
@@ -33,13 +33,79 @@ ${+list
 [-sel_attr= selected-]
 +}
               </div>
-            </div>
-             <div class="form-group row">
-              <label for="Quantity" class="col-sm-2 col-form-label">Product barcode</label>
+              <div class="col-sm-2"><a href="/${-adminalias-}/product/new/" class="btn btn-secondary" target="_blank" rel="tag">New product</a></div>
+            </div>                       
+            <div class="form-group row">
+              <label for="Quantity" class="col-sm-2 col-form-label">Product quantity</label>
               <div class="col-sm-10">
                 <input type="number" class="form-control" id="Quantity" name="Quantity" value="${-item.quantity-}" min="1">
               </div>
             </div>
+            <div class="form-group row">
+              <label for="Supplier" class="col-sm-2 col-form-label">Supplier</label>
+              <div class="col-sm-10">
+${+list
+[-entity=contragent-]
+[-header=
+                <select name="Supplier" id="Supplier" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.supplier-}-]
+[-sel_attr= selected-]
+[-filter= contragenttype=1-]
++}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="OrderState" class="col-sm-2 col-form-label">State</label>
+              <div class="col-sm-10">
+${+list
+[-entity=orderstate-]
+[-header=
+                <select name="OrderState" id="OrderState" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.orderstate-}-]
+[-sel_attr= selected-]
++}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Customer price" class="col-sm-2 col-form-label">Customer price</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="CustomerPrice" name="CustomerPrice" value="${-item.customerprice-}">
+              </div>
+            </div>             
+            <div class="form-group row">
+              <label for="Supplier price" class="col-sm-2 col-form-label">Supplier price</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="SupplierPrice" name="SupplierPrice" value="${-item.supplierprice-}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="PreProfit" class="col-sm-2 col-form-label">Preliminary profit</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="PreProfit" name="PreProfit" aria-describedby="PreProfitHelp"  value="${-item.preprofit-}">
+                <small id="PreProfitHelp" class="form-text text-muted">Preliminary profit per order product item</small>            
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="UnplannedProfit" class="col-sm-2 col-form-label">Unplanned profit</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="UnplannedProfit" name="UnplannedProfit" aria-describedby="UnplannedProfitHelp"  value="${-item.unplannedprofit-}">
+                <small id="UnplannedProfitHelp" class="form-text text-muted">Unplanned profit per order product item</small>            
+              </div>
+            </div>      
             <div class="form-group row">
               <label for="Comment" class="col-sm-2 col-form-label">Comment</label>
               <div class="col-sm-10">

@@ -1,4 +1,3 @@
-
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -33,7 +32,7 @@ ${+list
                 <select name="ProductCode" id="ProductCode" class="form-control">
 -]
 [-row=
-                <option value="${-id-}"${-%selected%-}>${-productname-} [${-barcode-}]</option>
+                <option value="${-id-}"${-%selected%-}>${-caption-}</option>
 -]
 [-footer=
                 </select>
@@ -44,19 +43,123 @@ ${+list
               </div>
             </div>
             <div class="form-group row">
+              <label for="Quantity" class="col-sm-2 col-form-label">Product quantity</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="Quantity" name="Quantity" value="${-item.quantity-}" min="1">
+              </div>
+            </div>            
+            <div class="form-group row">
+              <label for="Supplier" class="col-sm-2 col-form-label">Supplier</label>
+              <div class="col-sm-10">
+${+list
+[-entity=contragent-]
+[-header=
+                <select name="Supplier" id="Supplier" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.supplier-}-]
+[-sel_attr= selected-]
+[-filter= contragenttype=1-]
++}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="OrderState" class="col-sm-2 col-form-label">State</label>
+              <div class="col-sm-10">
+${+list
+[-entity=orderstate-]
+[-header=
+                <select name="OrderState" id="OrderState" class="form-control">
+-]
+[-row=
+                <option value="${-id-}"${-%selected%-}>${-name-}</option>
+-]
+[-footer=
+                </select>
+-]
+[-sel_id=${-item.orderstate-}-]
+[-sel_attr= selected-]
++}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="Customerprice" class="col-sm-2 col-form-label">Customer price</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="CustomerPrice" name="CustomerPrice" value="${-item.customerprice-}">
+              </div>
+            </div>             
+            <div class="form-group row">
+              <label for="Supplierprice" class="col-sm-2 col-form-label">Supplier price</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="SupplierPrice" name="SupplierPrice" value="${-item.supplierprice-}">
+              </div>
+            </div>            
+            <div class="form-group row">
+              <label for="PreProfit" class="col-sm-2 col-form-label">Preliminary profit</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="PreProfit" name="PreProfit" aria-describedby="PreProfitHelp"  value="${-item.preprofit-}">
+                <small id="PreProfitHelp" class="form-text text-muted">Preliminary profit per order product item</small>            
+              </div>
+            </div> 
+            <div class="form-group row">
+              <label for="UnplannedProfit" class="col-sm-2 col-form-label">Unplanned profit</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="UnplannedProfit" name="UnplannedProfit" aria-describedby="UnplannedProfitHelp"  value="${-item.unplannedprofit-}">
+                <small id="UnplannedProfitHelp" class="form-text text-muted">Unplanned profit per order product item</small>            
+              </div>
+            </div>             
+            <div class="form-group row">
               <label for="Comment" class="col-sm-2 col-form-label">Comment</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="Comment" name="Comment" wrap="soft">${-item.comment-}</textarea>
               </div>
-            </div>            
-            <div class="form-group row">
-              <label for="Quantity" class="col-sm-2 col-form-label">Product barcode</label>
-              <div class="col-sm-10">
-                <input type="number" class="form-control" id="Quantity" name="Quantity" value="${-item.quantity-}" min="1">
-              </div>
-            </div>   
+            </div>           
             <button type="submit" class="btn btn-primary">Apply</button> <a href="/${-adminalias-}/order/edit/${-item.order-}" class="btn btn-secondary">Back to the order</a>
-          </form> 
+          </form>
+              
+          <hr>
+          <a class="btn btn-secondary" href="/${-adminalias-}/file/new/?ownerid=${-item.id-}&ownertype=11&entityalias=orderproduct">Attach document(s)</a>          
+          <h2><i class="fas fa-paperclip"></i> File attachments</h2>
+              <div class="table-responsive">
+${+list
+[-entity=file-]
+[-header=
+                <table class="table table-bordered" id="${-orderproduct-}Table" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th><i class="fas fa-edit"></i></th>
+                      <th>FileName</th>
+                      <th>Comment</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th><i class="fas fa-edit"></i></th>
+                      <th>FileName</th>
+                      <th>Comment</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+-]
+[-row=
+                    <tr>
+                      <td><a href="/${-adminalias-}/file/edit/${-id-}"><i class="fas fa-edit"></i></a> <code>#${-id-}</code></td>
+                      <td><a href="/${-adminalias-}/file/download/${-id-}/${-name-}" download>${-name-}</a></td>
+                      <td>${-comment-}</td>
+                    </tr>
+-]
+[-footer=
+                  </tbody>
+                </table>
+-]
+[-filter=ownertype=11 AND ownerid=${-item.id-}-]
++}
+              </div>
           <hr> 
           <button type="button" id="deletebtn" class="btn btn-danger">Delete</button>
           <script>
